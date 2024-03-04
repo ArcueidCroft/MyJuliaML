@@ -21,14 +21,12 @@ end
 println(data)
 loss(xx, yy) = sum(abs.(model.(x) .- y))
 
-# Flux.train!(loss, Flux.params(model), data, ADAM(0.02))
+Flux.train!(loss, Flux.params(model), data, ADAM(0.02))
 println("step 1")
 
-for i = 1:500
+for i = 1:9
     Flux.train!(loss, Flux.params(model), data, ADAM(0.02))
-    if i%100 == 0
-        println("i = $i")
-    end
+    println("i = $i")
 end
 
 plot(x, cos)
